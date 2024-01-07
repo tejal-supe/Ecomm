@@ -13,3 +13,20 @@ export const signup = async (req:express.Request,res:express.Response) => {
         
     }
 }
+
+
+export const login = async (req : express.Request , res:express.Response) => {
+        try {
+            const data =await userModel.find({ email: req.body.email })
+            if (data) {
+                res.send(data)
+            }
+            else {
+                console.log('no email found!!');
+                
+            }
+        } catch (error) {
+            console.log(error);
+            
+        }   
+}

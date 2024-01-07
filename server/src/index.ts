@@ -13,6 +13,9 @@ app.use(cors());
 MongoConnect();
 
 app.use('/api/v1/user', Userrouter)
+app.use('/', (req: express.Request, res: express.Response) => {
+    res.send("Hey there")
+})
 
 app.listen(5000, () => {
     console.log("Server is running!")
