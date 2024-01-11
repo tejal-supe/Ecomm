@@ -36,7 +36,7 @@ const Navigator = () => {
           </Routes>
         </BrowserRouter>
       </Suspense>
-          <Footer />
+          {/* <Footer /> */}
     </div>
   );
 }

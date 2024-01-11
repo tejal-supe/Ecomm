@@ -68,15 +68,24 @@ const Signup = () => {
     console.log(typeof data)
   }
   return (
-    <div className="flex justify-center">
-      <div className="w-1/2 border  text-center">
-        <FormFields data={dataFormFields} submitData={setTheFormData} />
-        <div>
-          login with google/social media
-          <pre onClick={()=>navigate('/login')} className='hover:underline cursor-pointer hover:text-blue-700'>Already a meneber? login</pre>
-        </div>
-      </div>
+<div className="mt-4">
+  <div className='sm:mx-10 md:mx-24 shadow-md border-blue-400 '>
+<div className='flex flex-wrap shadow-md border-blue-400'>
+  <div className="visible sm:invisible md:visible lg:visible   md:w-[45%] bg-emerald-500"></div>
+  <div className="w-full md:w-[55%] ">
+    <div className="my-5 mx-10">
+  <FormFields data={dataFormFields} submitData={setTheFormData} from="singup"/>
+  <div className='text-center'>
+    <p className='block'>login with google/social media</p>
+    <p onClick={()=>navigate('/login')} className='hover:underline cursor-pointer hover:text-blue-700'>Already a member? Login</p>
+  </div>
     </div>
+  </div>
+
+</div>
+
+  </div>
+</div>
   );
 }
 

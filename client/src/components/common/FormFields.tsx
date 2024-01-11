@@ -12,11 +12,12 @@ interface FormData {
     };
   }[];
   submitData: (data: Record<string, any>) => any;
+  from:string;  
 }
 
 type FormState = Record<string, any>;
 
-const FormFields = (props: FormData) => {
+const   FormFields = (props: FormData) => {
   const [formData, setFormData] = useState<FormState>({});
   const [errors, setErrors] = useState<FormState>({});
 
@@ -27,7 +28,7 @@ const FormFields = (props: FormData) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-    });
+    }); 
     handleValidation(validate, e.target.name, e.target.value);
   };
 
@@ -57,11 +58,11 @@ const FormFields = (props: FormData) => {
   };
 
   return (
-    <div>
+    <>
       {props?.data.map((formfields) => {
         return (
-          <div className="container mb-4" key={formfields.name}>
-            <label className="block text-left mx-10" htmlFor={formfields.name}>
+            <div className="container mb-4" key={formfields.name}>
+            <label className="block text-left" htmlFor={formfields.name}>
               {formfields.label}
             </label>
             <input
@@ -71,8 +72,8 @@ const FormFields = (props: FormData) => {
               placeholder={formfields.placeholder}
               className={
                 !errors[formfields.name]
-                  ? "border w-2/5 h-9 px-4 focus:border-blue-400 caret-blue-600 focus-visible:outline-blue-600"
-                  : "border w-2/5 h-9 px-4 focus:border-red-700 caret-red-700 focus-visible:outline-red-700"
+                  ? "border w-full sm:w-[90%] md:w-[90%] lg:w-[90%]  h-9 px-3 focus:border-blue-400 caret-blue-600 focus-visible:outline-blue-600"
+                  : "border-2 border-red-700 w-full sm:w-[90%] md:w-[90%] lg:w-[90%] h-9 px-3 focus:border-red-700 caret-red-700 focus-visible:outline-red-700"
               }
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 handleData(e, formfields.validationRules)
@@ -84,8 +85,10 @@ const FormFields = (props: FormData) => {
           </div>
         );
       })}
-      <button onClick={() => submitDataToParent()}>Submit</button>
-    </div>
+      <div className="flex justify-center">
+      <button type="button" className="flex text-center w-full sm:w-48 border-2 sm:justify-center border-green-200 rounded-3xl bg-green-200 text-green-600 hover:border-green-600 hover:bg-green-600 hover:text-green-200" onClick={() => submitDataToParent()}>Submit</button>
+      </div>
+    </>
   );
 };
 

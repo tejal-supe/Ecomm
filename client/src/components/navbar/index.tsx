@@ -11,7 +11,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className="bg-teal-600 text-white h-14 sticky top-0">
+    <div className="bg-black  text-white h-14 sticky top-0">
       {/* <div className="flex h-full">
         <div className="w-2/4 border">Logo</div>
         <div className="w-2/4 border">
@@ -108,7 +108,7 @@ const Navbar = () => {
                     className="md:p-4 py-2 block hover:text-purple-400 text-yellow-300"
                     href="/account"
                   >
-                    Sign Out / Login / Accout
+                    Accout
                   </a>
                 </li>
               </>
