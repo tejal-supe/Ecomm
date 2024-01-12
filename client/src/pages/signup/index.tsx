@@ -65,23 +65,19 @@ const Signup = () => {
   ];
 
   const setTheFormData = (data:Record<string,any>) => {
-    console.log(typeof data)
+    console.log(data)
   }
   return (
-<div className="mt-4">
-  <div className='sm:mx-10 md:mx-24 shadow-md border-blue-400 '>
-<div className='flex flex-wrap shadow-md border-blue-400'>
-  <div className="visible sm:invisible md:visible lg:visible   md:w-[45%] bg-emerald-500"></div>
-  <div className="w-full md:w-[55%] ">
-    <div className="my-5 mx-10">
+<div className="mt-4 flex justify-center">
+  <div className='sm:mx-10 md:mx-24 w-full sm:w-[55%]'>
+<div className='flex justify-center shadow-md border-blue-400 w-full bg-gradient-to-tr from-slate-100 to-green-50'>
+    <div className="my-5 w-full mr-10 ml-20">
   <FormFields data={dataFormFields} submitData={setTheFormData} from="singup"/>
   <div className='text-center'>
     <p className='block'>login with google/social media</p>
     <p onClick={()=>navigate('/login')} className='hover:underline cursor-pointer hover:text-blue-700'>Already a member? Login</p>
   </div>
     </div>
-  </div>
-
 </div>
 
   </div>

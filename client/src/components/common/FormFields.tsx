@@ -52,7 +52,7 @@ const   FormFields = (props: FormData) => {
     console.log(errors, "errors");
     if (isObjectEmpty(errors)) {
       alert("Please fill the form");
-    } else {
+    } else {      
       props.submitData(formData);
     }
   };
@@ -71,9 +71,9 @@ const   FormFields = (props: FormData) => {
               id={formfields.name}
               placeholder={formfields.placeholder}
               className={
-                !errors[formfields.name]
-                  ? "border w-full sm:w-[90%] md:w-[90%] lg:w-[90%]  h-9 px-3 focus:border-blue-400 caret-blue-600 focus-visible:outline-blue-600"
-                  : "border-2 border-red-700 w-full sm:w-[90%] md:w-[90%] lg:w-[90%] h-9 px-3 focus:border-red-700 caret-red-700 focus-visible:outline-red-700"
+               ` w-full sm:w-[90%] md:w-[90%] lg:w-[90%] h-9 px-3 rounded-lg ${!errors[formfields.name]
+                  ? "border  focus:border-blue-400 caret-blue-600 focus-visible:outline-blue-600"
+                  : "border-2 border-red-700focus:border-red-700 caret-red-700 focus-visible:outline-red-700"}`
               }
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 handleData(e, formfields.validationRules)
@@ -86,7 +86,7 @@ const   FormFields = (props: FormData) => {
         );
       })}
       <div className="flex justify-center">
-      <button type="button" className="flex text-center w-full sm:w-48 border-2 sm:justify-center border-green-200 rounded-3xl bg-green-200 text-green-600 hover:border-green-600 hover:bg-green-600 hover:text-green-200" onClick={() => submitDataToParent()}>Submit</button>
+      <button type="button" className="flex text-center w-full sm:w-32 h-8  border-2 sm:justify-center border-green-200 rounded-3xl bg-green-200 text-green-600 hover:border-green-300 hover:bg-green-300 hover:text-green-600 shadow-sm " onClick={() => submitDataToParent()}>Submit</button>
       </div>
     </>
   );
