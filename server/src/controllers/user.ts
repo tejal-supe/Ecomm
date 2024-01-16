@@ -1,12 +1,29 @@
+import { decryptData, encryptData, random } from "../helpers/index";
 import { userModel } from "../modals/userModal";
 import express from "express";
 
 export const signup = async (req:express.Request,res:express.Response) => {
     try {
-        console.log(req,'res')
-        const user = await userModel.create(req.body)
-        user.save();
-        res.json({message:"User created!"})
+        let {fname,lname ,email,mobile,password} = req.body        
+        if(fname && lname && email && mobile && password){
+            // console.log(fname,lname ,email,mobile,password,'res',random())
+            const salt = random();
+            const passEncrypt = encryptData(password);
+            console.log(passEncrypt);
+            console.log(decryptData(passEncrypt),'decrypted data');
+            
+            const user = await userModel.create({
+                fname,lname,email,mobile,authentication:{
+                    password:passEncrypt,
+                    salt
+                }
+            })
+           const data = await user.save();
+            res.json({message:"User created!",d:data.toObject()})
+        }
+        else{
+            res.status(403).json({message:"Enter all the details"})
+        }
         
     } catch (error) {
         console.log(error);

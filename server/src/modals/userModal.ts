@@ -13,6 +13,7 @@ const user = new mongoose.Schema({
   mobile: {
     type: String,required:true
   },
+  // password: { type: String, required: true, select: false },
   authentication: {
     password: { type: String, required: true, select: false },
     salt: { type: String, select: false },
