@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import FormFields from '../../components/common/FormFields';
+import GoogleLoginPage from './GoogleLoginPage';
 
 const Signup = () => {
   const navigate = useNavigate()
-  
   const dataFormFields = [
     {
       name: "fname",
@@ -74,7 +74,8 @@ const Signup = () => {
     <div className="my-5 w-full mr-10 ml-20">
   <FormFields data={dataFormFields} submitData={setTheFormData} from="singup"/>
   <div className='text-center'>
-    <p className='block'>login with google/social media</p>
+    {/* <p className='block'>login with google/social media</p> */}
+    <p><GoogleLoginPage /></p>
     <p onClick={()=>navigate('/login')} className='hover:underline cursor-pointer hover:text-blue-700'>Already a member? Login</p>
   </div>
     </div>
