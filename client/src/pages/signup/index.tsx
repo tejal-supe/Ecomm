@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import FormFields from '../../components/common/FormFields';
-import GoogleLoginPage from './GoogleLoginPage';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import FormFields from "../../components/common/FormFields";
+import GoogleLoginPage from "./GoogleLoginPage";
+import { register } from "../../services/userService";
+
+
 
 const Signup = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dataFormFields = [
     {
       name: "fname",
@@ -64,26 +67,42 @@ const Signup = () => {
     },
   ];
 
-  const setTheFormData = (data:Record<string,any>) => {
-    console.log(data)
-  }
+  const setTheFormData = async(data: Record<string, any>) => {
+    try {
+      const userRegister = await register(data)
+      console.log(userRegister,'user regsister');
+      
+    } catch (error) {
+      console.log(error,'eerr');
+      
+    }
+  };
   return (
-<div className="mt-4 flex justify-center">
-  <div className='sm:mx-10 md:mx-24 w-full sm:w-[55%]'>
-<div className='flex justify-center shadow-md border-blue-400 w-full bg-gradient-to-tr from-slate-100 to-green-50'>
-    <div className="my-5 w-full mr-10 ml-20">
-  <FormFields data={dataFormFields} submitData={setTheFormData} from="singup"/>
-  <div className='text-center'>
-    {/* <p className='block'>login with google/social media</p> */}
-    <p><GoogleLoginPage /></p>
-    <p onClick={()=>navigate('/login')} className='hover:underline cursor-pointer hover:text-blue-700'>Already a member? Login</p>
-  </div>
+    <div className="mt-4 flex justify-center">
+      <div className="sm:mx-10 md:mx-24 w-full sm:w-[55%]">
+        <div className="flex justify-center shadow-md border-blue-400 w-full bg-gradient-to-tr from-slate-100 to-green-50">
+          <div className="my-5 w-full mr-10 ml-20">
+            <FormFields
+              data={dataFormFields}
+              submitData={setTheFormData}
+              from="singup"
+            />
+            <div className="text-center">
+              <p>
+                <GoogleLoginPage submitData={setTheFormData}/>
+              </p>
+              <p
+                onClick={() => navigate("/login")}
+                className="hover:underline cursor-pointer hover:text-blue-700"
+              >
+                Already a member? Login
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-
-  </div>
-</div>
   );
-}
+};
 
-export default Signup
+export default Signup;

@@ -7,15 +7,15 @@ const user = new mongoose.Schema({
   lname: {
     type: String, required:true
   },
-  mobile: {
-    type: String,required:true
+  email: {
+    type: String,
+    required: true,
   },
 });
 // Descriminator for regular sign-in
 const regularUserSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    required: true,
+  mobile: {
+    type: String, required:true
   },
  authentication: {
     password: { type: String, required: true, select: false },

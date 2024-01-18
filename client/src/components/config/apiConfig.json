@@ -1,5 +1,5 @@
 {
-    "baseUrl":"http://localhost:5173/",
+    "baseUrl":"http://localhost:5000/",
     "user":{
         "registerUser":"api/v1/user/create"
     }

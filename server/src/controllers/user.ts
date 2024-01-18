@@ -1,12 +1,13 @@
 import { decryptData, encryptData, random } from "../helpers/index";
 import { GoogleUser, RegularUser, userModel } from "../modals/userModal";
-import express from "express";
+import express, { request } from "express";
 
 export const signup = async (req: express.Request, res: express.Response) => {
-  try {
+  console.log(req.body, req.header,req.headers,'request') 
+  try { 
     let { fname, lname, email, mobile, password, googleId } = req.body;
     if (fname && lname && mobile) {
-      if (email && password) {
+      if (mobile && password) {
         const salt = random();
         const passEncrypt = encryptData(password);
         // console.log(passEncrypt);
@@ -28,14 +29,14 @@ export const signup = async (req: express.Request, res: express.Response) => {
         const user = await GoogleUser.create({
           fname,
           lname,
-          mobile,
+          email,
           googleId,
         });
        await user.save();
         res.status(200).json({ message: "Welcome!"});
       }
     } else {
-      res.status(403).json({ message: "Please enter all details" });
+      res.status(406).json({ message: "Please enter all details" });
     }
   } catch (error) {
     console.log(error);

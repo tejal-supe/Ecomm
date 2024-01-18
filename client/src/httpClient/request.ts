@@ -122,6 +122,7 @@ export const appRequest = (
       status: false,
       httpStatusCode: error.status || 500,
     };
+    console.error(error)  
 
     // hideLoader();
     if (showToast) {
@@ -149,10 +150,9 @@ export const appRequest = (
       //   clearStorage("recentlyViewedProperty");
       //   clearStorage("recentlyViewedLiked");
       //   clearStorage("addToFavList");
-    }
+    } 
     return Promise.reject(errorMessage);
   };
 
   return appClient(options).then(onSuccess).catch(onError);
 };
-console.log(AxiosError);
