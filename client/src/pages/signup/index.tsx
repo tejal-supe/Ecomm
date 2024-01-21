@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch , useSelector } from "react-redux";
 import FormFields from "../../components/common/FormFields";
 import GoogleLoginPage from "./GoogleLoginPage";
 import { register } from "../../services/userService";
+import ToastMessageUi from "../../components/common/ToastMessageUi";
+import { showToastMessage } from "../../redux/toastMessage";
+import { RootState } from "../../app/store";
 
 
 
 const Signup = () => {
   const navigate = useNavigate();
+  const count = useSelector((state: RootState) => state.toast);
+  const dispatch = useDispatch();
+  console.log(count,'count');
+  
   const dataFormFields = [
     {
       name: "fname",
@@ -74,12 +82,20 @@ const Signup = () => {
       
     } catch (error) {
       console.log(error,'eerr');
-      
+      // dispatch(showToastMessage({
+      //   value:true,message:error 
+      // }))
     }
   };
   return (
     <div className="mt-4 flex justify-center">
       <div className="sm:mx-10 md:mx-24 w-full sm:w-[55%]">
+        <button onClick={() => dispatch(showToastMessage({value:true,message:"Heyy"}))}>
+          CLickkkkkkkkk
+        </button>
+        <button onClick={() => dispatch(showToastMessage(false))}>
+          CLickkkkkkkkk false
+        </button>
         <div className="flex justify-center shadow-md border-blue-400 w-full bg-gradient-to-tr from-slate-100 to-green-50">
           <div className="my-5 w-full mr-10 ml-20">
             <FormFields
@@ -89,7 +105,7 @@ const Signup = () => {
             />
             <div className="text-center">
               <p>
-                <GoogleLoginPage submitData={setTheFormData}/>
+                <GoogleLoginPage submitData={setTheFormData} />
               </p>
               <p
                 onClick={() => navigate("/login")}
@@ -99,6 +115,7 @@ const Signup = () => {
               </p>
             </div>
           </div>
+          <ToastMessageUi />
         </div>
       </div>
     </div>

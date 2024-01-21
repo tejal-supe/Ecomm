@@ -36,7 +36,8 @@ export const signup = async (req: express.Request, res: express.Response) => {
         res.status(200).json({ message: "Welcome!"});
       }
     } else {
-      res.status(406).json({ message: "Please enter all details" });
+      res.statusCode = 400;
+      res.json({ message: "Please enter all details" });
     }
   } catch (error) {
     console.log(error);

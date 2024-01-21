@@ -122,7 +122,7 @@ export const appRequest = (
       status: false,
       httpStatusCode: error.status || 500,
     };
-    console.error(error)  
+    console.error(error);
 
     // hideLoader();
     if (showToast) {
@@ -133,7 +133,6 @@ export const appRequest = (
       //     })
       //   );
     }
-
     if (errorMessage.httpStatusCode == 401) {
       // clear storage and redux
       //   store.dispatch(clear());
@@ -150,7 +149,7 @@ export const appRequest = (
       //   clearStorage("recentlyViewedProperty");
       //   clearStorage("recentlyViewedLiked");
       //   clearStorage("addToFavList");
-    } 
+    }
     return Promise.reject(errorMessage);
   };
 
