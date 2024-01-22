@@ -25,9 +25,13 @@ const GoogleLoginPage = (props: FormData) => {
    
   };
   return (
-    <div>
+    <div className="text-center flex justify-center">
       <GoogleOAuthProvider clientId="1080860225659-bft2cjol3b9uhjf2too4b07njkqr0tjr.apps.googleusercontent.com">
         <GoogleLogin
+        size="large"
+        shape="circle"
+        type="icon"
+        width={1200}
           onSuccess={handleLogin}
           onError={() => {
             console.log("Login Failed");

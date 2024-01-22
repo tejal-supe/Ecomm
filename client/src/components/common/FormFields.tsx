@@ -12,7 +12,6 @@ interface FormData {
     };
   }[];
   submitData: (data: Record<string, any>) => any;
-  from:string;  
 }
 
 type FormState = Record<string, any>;

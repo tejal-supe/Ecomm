@@ -13,6 +13,7 @@ const Order = lazy(() => import("../pages/order/index"));
 const Cart = lazy(() => import("../pages/cart/index"));
 const Profile = lazy(() => import("../components/profile/index"));
 const AccountData = lazy(() => import("../pages/account/AccountData"));
+const ForgotPassword = lazy(()=>import("../pages/forgotPassword/index"))
 
 const Navigator = () => {
   return (
@@ -33,6 +34,7 @@ const Navigator = () => {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<SignIn />} />
             <Route path="/listing" element={<ListingPage />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
           </Routes>
         </BrowserRouter>
       </Suspense>
