@@ -1,10 +1,20 @@
-import { RegularUser, userModel } from "../modals/userModal";
+import { userModel } from "../modals/userModal";
 
-export const isUserPresent = async(email:string) =>{
-    const data = await RegularUser.find({ email: email });
-    console.log(data,'data in middleware')
-    if(data.length>0){
-        return data
-    }
-    return null
-}
+type UserPresent = {
+  email?: string;
+  googleId?: string;
+  isGoogleSigned: boolean;
+};
+
+export const isUserPresent = async (values: UserPresent) => {
+  const { email, googleId, isGoogleSigned } = values;
+  if (isGoogleSigned) {
+    const data = await userModel.findOne({ googleId });
+    return data;
+  } else {
+    const data = await userModel
+      .findOne({ email: email })
+      .select("+authentication.password");
+    return data;
+  }
+};
