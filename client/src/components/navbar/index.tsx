@@ -12,13 +12,6 @@ const Navbar = () => {
 
   return (
     <div className="bg-black  text-white h-14 sticky top-0">
-      {/* <div className="flex h-full">
-        <div className="w-2/4 border">Logo</div>
-        <div className="w-2/4 border">
-          <span>Cart</span>
-          <span>Singin</span>
-        </div>
-      </div> */}
       <header>
         <nav
           className="
@@ -30,7 +23,6 @@ const Navbar = () => {
           md:py-0
           px-4
           text-lg
-         
         "
         >
           <div onClick={() => navigate("/")} className="w-64">
@@ -40,7 +32,7 @@ const Navbar = () => {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             id="menu-button"
-            className="h-6 w-6 cursor-pointer md:hidden block"
+            className="h-6 w-6 cursor-pointer lg:hidden block"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -55,7 +47,7 @@ const Navbar = () => {
           </svg>
 
           <div
-            className="hidden w-full md:flex md:items-center md:w-auto"
+            className="hidden w-full lg:flex lg:items-center lg:w-auto xs:bg-pink-50 lg:bg-black"
             id="menu"
           >
             <div className="w-80 bg-slate-200">
@@ -65,9 +57,9 @@ const Navbar = () => {
               className="
               pt-4
               text-base
-              md:flex
-              md:justify-between 
-              md:pt-0"
+              lg:flex
+              lg:justify-between 
+              lg:pt-0"
             >
               <>
                 <li>
@@ -100,7 +92,7 @@ const Navbar = () => {
                     className="md:p-4 py-2 block hover:text-purple-400 text-yellow-300"
                     href="/signup"
                   >
-                    Sign Out / Login / Accout
+                    Sign Up
                   </a>
                 </li>
                 <li>
