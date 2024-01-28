@@ -37,7 +37,7 @@ export const signup = async (req: express.Request, res: express.Response) => {
       } else {
         const user = await userModel.create({
           fname,
-          lname,
+          lname,  
           email,
           googleId,
         });
@@ -84,3 +84,18 @@ console.log(decryptDta,s.authentication.password ,password);
     console.log(error);
   }
 };
+
+export const forgotPassword = async (req:express.Request, res:express.Response) => {
+  try {
+    const { email, password } = req.body;
+     let dat = {
+       email,
+       isGoogleSigned: false,
+    };
+    const s = await isUserPresent(dat);
+    
+    
+  } catch (error) {
+console.log(error);
+  }
+}

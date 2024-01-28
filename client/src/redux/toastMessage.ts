@@ -18,7 +18,7 @@ export const toastSlice = createSlice({
   initialState,
   reducers: {
     showToastMessage: (state, action) => {
-       console.log(action,'action')
+       console.log(action.payload,'action',)
       state.value = action.payload.value;
       state.message = action.payload.message;
     },

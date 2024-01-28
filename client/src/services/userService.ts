@@ -11,10 +11,16 @@ type User = {
 };
 
 export const register = (params: User) => {
-    console.log(params,'params');
   return appRequest({
     method: RequestMethods.POST,
     url: BaseUrl + config.user.registerUser,
+    data: params,
+  });
+};
+export const login = (params: User) => {
+  return appRequest({
+    method: RequestMethods.POST,
+    url: BaseUrl + config.user.loginUser,
     data: params,
   });
 };

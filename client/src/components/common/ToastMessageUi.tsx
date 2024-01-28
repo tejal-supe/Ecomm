@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
@@ -9,7 +9,9 @@ import { showToastMessage } from '../../redux/toastMessage';
 
 const ToastMessageUi = () => {
     const count = useSelector((state: RootState) => state.toast);
-      const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  console.log('in toast message, ',count.value);
+  
 
     const handleClose = (
       event: React.SyntheticEvent | Event,
@@ -19,8 +21,12 @@ const ToastMessageUi = () => {
         return;
       }
 
-      dispatch(showToastMessage(false))
-    };
+      dispatch(showToastMessage({value:false,message:"null"}))
+  };
+  useEffect(() => {
+    console.log('in effcet');
+    
+  },[count.value])
 
     const action = (
       <>
@@ -36,7 +42,7 @@ const ToastMessageUi = () => {
     );
   return (
     <>
-      <Snackbar
+           <Snackbar
         open={count.value}
         autoHideDuration={3000}
         anchorOrigin={{

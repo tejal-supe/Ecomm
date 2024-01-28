@@ -1,6 +1,7 @@
 {
     "baseUrl":"http://localhost:5000/",
     "user":{
-        "registerUser":"api/v1/user/create"
+        "registerUser":"api/v1/user/create",
+        "loginUser":"api/v1/user/login"
     }
 }
