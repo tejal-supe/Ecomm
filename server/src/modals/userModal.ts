@@ -22,32 +22,22 @@ const user = new mongoose.Schema({
   googleId: {
     type: String,
   },
+  otp:{
+    type:Number
+  }
 });
-// Descriminator for regular sign-in
-// const regularUserSchema = new mongoose.Schema({
-//   mobile: {
-//     type: String, required:true
-//   },
-//  authentication: {
-//     password: { type: String, required: true, select: false },
-//     salt: { type: String, select: false },
-//     sessionToken: { type: String, select: false },
-//   },
-// });
-
-// // Discriminator for Google Sign-in
-// const googleUserSchema = new mongoose.Schema({
-//   googleId: {
-//     type: String,
-//     required: true,
-//     unique: true,
-//   },
-// });
 
 // Create the base model
 export const userModel = mongoose.model("User",user)
-// Create the discriminators
-// export const RegularUser = userModel.discriminator('RegularUser', regularUserSchema);
-// export const GoogleUser = userModel.discriminator('GoogleUser', googleUserSchema);
 
 
+export const addData = async(email:string,otp:number) =>{
+  try{
+   let updatedData = await userModel.updateOne({email:email},{$set:{otp:otp}},{upsert:true})
+   return updatedData
+
+  }
+  catch(err){
+    console.log(err)
+  }
+}

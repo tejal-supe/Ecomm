@@ -1,0 +1,30 @@
+[{
+  "_id": {
+    "$oid": "65b9e75893b23bdd29fa5444"
+  },
+  "fname": "tejalnew",
+  "lname": "supew",
+  "email": "test@yopmail.com",
+  "mobile": "9876544321",
+  "authentication": {
+    "password": "$2b$10$hgFMyot9mETQE2DWAfxTxuK7ifZzJX2Xd8XeBMO7mONNqovigBzWW",
+    "salt": "sbjggkCppv0iN4FA8Tuix1+PUXMvGIneiiQk/Mf/VdtwMJ2r+tLpCu3Rtw461bFyZ5OYLlbCLGM/bOyi6o2+KylB9j1GFyuByMrKauRxfn+bvX8EIKQB/sKRY8YYLJYaN5Bku1iks6rkfwykxVd6Sd6YksKazjFwF2KXHdIYSvI="
+  },
+  "__v": 0,
+  "otp": 775770
+},
+{
+  "_id": {
+    "$oid": "65b9eb3cf8d3dd0cbee7fa8c"
+  },
+  "fname": "tejalnew",
+  "lname": "supew",
+  "email": "yiy@yopmail.com",
+  "mobile": "9876544321",
+  "authentication": {
+    "password": "$2b$10$HrcCzhS2.0CstMGABos.JuuTjSiFYcOUMXB4.hYB8lDRJe1lgOzw6",
+    "salt": "VLIxBJ2tTSAujC7YM5cmOPyPUzZl0YzBIXu44F4+H/SDsYfR6/RTL3j3QwTOCSPBz/DqyhkQvF8itUNq506X/VJKZRVd44F+fs1Is29IWzlKA8bItDRXT1iVBlB66jJ0iQUgo0UfUZ1jzlhzFBve8n/ALMh9qa8ayCWbM8pU0x8="
+  },
+  "otp": 413372,
+  "__v": 0
+}]

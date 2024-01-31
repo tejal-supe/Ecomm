@@ -1,18 +1,10 @@
 import express from "express";
-import passport from "passport";
-import session from "express-session";
-import LocalStatergy from "passport-local"
 
 import { isUserPresent } from "../middleware/userExists";
-import { decryptData, encryptData, random } from "../helpers/index";
+import { decryptData, encryptData, jwtSign, random } from "../helpers/index";
 import { userModel } from "../modals/userModal";
+import { sendTheMail } from "../helpers/nodemail";
 
-const localStrat = new LocalStatergy.Strategy((user,pass,done)=>{
-  return done(null, user);
-})
-
-passport.use(localStrat); 
-// console.log(LocalStatergy.Strategy)
 export const signup = async (req: express.Request, res: express.Response) => {
   try {
     let { fname, lname, email, mobile, password, googleId } = req.body;
@@ -63,32 +55,36 @@ export const signup = async (req: express.Request, res: express.Response) => {
 
 const conditional = (data: object, res: express.Response) => {
   if (data) {
-
+    const token = jwtSign(data);
+    res.cookie("access_token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 3600000
+    })
     res.json({ message: "Welcome" });
-
   } else {
     res.json({ messgae: "Please sign up first" });
   }
 };
 
-export const login = async (req: express.Request, res: express.Response) => {
+export const login = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
   try {
     const { email, isGoogleSigned, googleId, password } = req.body;
     if (isGoogleSigned) {
       const s = await isUserPresent(googleId);
-      conditional(s, res);
+      if(s){
+        conditional(s, res);
+      }
     } else {
-      let data = {
-        email,
-        isGoogleSigned,
-        password,
-      };
+      let data = { email, isGoogleSigned, password};
 
       const s = await isUserPresent(data);
       const decryptDta = decryptData(password, s.authentication.password);
 
       if (decryptDta) {
         conditional(s, res);
+      }else{
+        res.json({message:"Incorrect password"})
       }
     }
   } catch (error) {
@@ -96,18 +92,69 @@ export const login = async (req: express.Request, res: express.Response) => {
   }
 };
 
-export const forgotPassword = async (
-  req: express.Request,
-  res: express.Response
-) => {
+export const forgotPassword = async (req: express.Request,res: express.Response) => {
   try {
-    const { email, password } = req.body;
-    let dat = {
-      email,
-      isGoogleSigned: false,
-    };
-    const s = await isUserPresent(dat);
+    const { email } = req.body;
+    let userParamData = { email,isGoogleSigned: false};
+    const isPresent = await isUserPresent(userParamData);
+    if (isPresent) {
+      res.json({ message: "Otp is sent to the email id" });
+      sendTheMail(email)
+    } else {
+      res.status(403).json({ message: "Email id not found!" });
+    }
   } catch (error) {
     console.log(error);
   }
 };
+
+export const verifyOtp = async (req:express.Request,res:express.Response) =>{
+try {
+  const {email,otp} = req.body
+  const checkData = {
+    email,
+    isGoogleSigned: false
+  }
+  const isUser = await isUserPresent(checkData)
+  let otpFromDb = isUser.otp
+  if(otpFromDb === otp){
+    res.json({message:"Otp verified you can now change the password"})
+  }else{
+    res.json({message:"Incorrect otp"})
+  }
+  
+} catch (error) {
+  console.log(error);
+}
+}
+
+export const changePassword = async(req:express.Request,res:express.Response)=>{
+try {
+  const {email,password,cpassword} = req.body;
+  const isUser = {email,  isGoogleSigned: false}
+  const data = isUserPresent(isUser);
+  if(data){
+    if(password === cpassword){
+      const passEncrypt = encryptData(password);
+      const find = {email};
+      const updatedPasswordData = await userModel.findOneAndUpdate(find,{$set:{'authentication.password':passEncrypt}},{new:true})
+  
+      console.log(updatedPasswordData,'updated')
+      res.json({message:"Password updates succesffully"})
+    }
+    else{
+      res.json({message:"Passwords do not match"})
+    }
+  }
+  else{
+    res.json({message:"No user found"})
+  }
+  
+} catch (error) {
+  res.json({error:error})
+}
+}
+
+export const check = async(req:express.Request,res:express.Response) =>{
+res.json({message:"Workijng"})
+}

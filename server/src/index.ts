@@ -22,7 +22,7 @@ MongoConnect();
 
 app.use('/api/v1/user', Userrouter)
 app.use('/', (req: express.Request, res: express.Response) => {
-    res.send("Hey there")
+    res.send("Hey ")
 })
 
 app.listen(5000, () => {
