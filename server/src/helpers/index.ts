@@ -26,10 +26,8 @@ export const jwtSign = (data:object) =>{
   return token;
 
 }
-//jwt verify issue
 export const jwtVerify =(token:string) =>{
-  console.log('inside jwtverify');
-  const d =  jwt.verify(token, SERECT)
-  console.log(d,'jwt verifty')
   return jwt.verify(token, SERECT);
 }
+  
+  

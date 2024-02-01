@@ -156,5 +156,33 @@ try {
 }
 
 export const check = async(req:express.Request,res:express.Response) =>{
-res.json({message:"Workijng"})
+  let userDetail = res.locals.userDetails.data
+  
+  const userDetails = {
+    fname: userDetail.fname,
+    lname:userDetail.lname,
+    email:userDetail.email,
+    _id:userDetail._id,
+    mobile:userDetail.mobile?userDetail.mobile:null,
+    googleId:userDetail.googleId?userDetail.googleId:null,
+    iat:res.locals.userDetails.iat,
+    exp:res.locals.userDetails.exp
+
+  }
+  
+res.json({message:"User is authorized",data:userDetails})
+}
+
+export const editUserDetails =async(req:express.Request,res:express.Response)=>{
+  try {
+    const {email,fname,lname,mobile,address1,address2,city,pincode,state,country} = req.body;   
+    const address = {
+      address1,address2,city,pincode,state,country
+    } 
+    const userDetails = await userModel.findOneAndUpdate({email},{$set:{fname:fname,lname:lname,mobile:mobile,address:address}},{upsert:true,new:true})    
+    res.json({message:"Data updated successfullly",data:userDetails})
+  } catch (error) {
+    res.send(error)
+  }
+  
 }

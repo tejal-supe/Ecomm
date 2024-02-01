@@ -1,5 +1,5 @@
 import express from "express";
-import { changePassword, check, forgotPassword, login, signup, verifyOtp } from "../controllers/user";
+import { changePassword, check, editUserDetails, forgotPassword, login, signup, verifyOtp } from "../controllers/user";
 import { authenticate } from "../middleware/authenticate";
 
  
@@ -10,8 +10,9 @@ Userrouter.post("/login", login);
 Userrouter.post("/forgetPassword",forgotPassword)
 Userrouter.post("/verifyOtp",verifyOtp)
 Userrouter.post("/changePass",changePassword)
-Userrouter.post("/tp",authenticate , check)
-
-// express().use()
+Userrouter.use(authenticate);
+Userrouter.post("/tp" , check)
+Userrouter.put("/editDetails",editUserDetails)
+Userrouter.put("/updatePass",changePassword)
 
 export default Userrouter;
