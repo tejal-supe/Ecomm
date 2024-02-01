@@ -14,6 +14,7 @@ const GoogleLoginPage = (props: FormData) => {
         lname: obj.family_name,
         email: obj.email,
         googleId: obj.sub,
+        isGoogleSigned:true
       };
       if (userData) {
         props.submitData(userData);
