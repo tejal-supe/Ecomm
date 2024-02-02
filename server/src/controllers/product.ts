@@ -1,0 +1,32 @@
+import express from "express";
+import { ProductModel } from "../modals/dataModel";
+
+export const addProducts = async (req: express.Request,res: express.Response) => {
+  try {
+    const {product_name,product_image,  product_desc,product_subimages,product_cost,product_rating , product_feature, rated_by } = req.body;
+    const d = await ProductModel.create({
+      product_name: product_name,
+    });
+    res.json({ d: d });
+  } catch (error) {
+    res.json({ error: error });
+  }
+};
+
+export const getProducts = async (req: express.Request,res: express.Response) => {
+  try {
+    const data = await ProductModel.find();
+    res.json({ product: data });
+  } catch (error) {
+    res.json({ error: error });
+  }
+};
+
+export const homeProducts = async(req:express.Request,res:express.Response)=>{
+    try {
+        const data = await ProductModel.find().where('product_rating').gte(5);
+        res.json({products:data})
+    } catch (error) {
+        res.json({ error: error });
+    }
+}

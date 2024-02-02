@@ -3,5 +3,8 @@
     "user":{
         "registerUser":"api/v1/user/create",
         "loginUser":"api/v1/user/login"
+    },
+    "product":{
+        "homeProducts":"api/v1/products/getHomeProducts"
     }
 }

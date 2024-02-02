@@ -17,10 +17,17 @@ export const register = (params: User) => {
     data: params,
   });
 };
-export const login = (params: User) => {
-  return appRequest({
-    method: RequestMethods.POST,
-    url: BaseUrl + config.user.loginUser,
-    data: params,
-  });
+export const login = async(params: User) => {
+const user  = await appRequest({
+  method: RequestMethods.POST,
+  url: BaseUrl + config.user.loginUser,
+  data: params,
+},{
+  showToast: false,
+  fullResponse: true,
+});
+  console.log(user.headers,'headers');
+  console.log(user,'user');
+  
+   
 };

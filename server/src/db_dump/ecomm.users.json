@@ -17,14 +17,35 @@
   "_id": {
     "$oid": "65b9eb3cf8d3dd0cbee7fa8c"
   },
-  "fname": "tejalnew",
-  "lname": "supew",
+  "fname": "abv",
+  "lname": "xyz",
   "email": "yiy@yopmail.com",
-  "mobile": "9876544321",
+  "mobile": "9977886655",
   "authentication": {
-    "password": "$2b$10$HrcCzhS2.0CstMGABos.JuuTjSiFYcOUMXB4.hYB8lDRJe1lgOzw6",
+    "password": "$2b$10$rHmJv56USYS2zMrEl0TCHeGn3EWko9fo/SdXUekbu5i4RzRTNcMfK",
     "salt": "VLIxBJ2tTSAujC7YM5cmOPyPUzZl0YzBIXu44F4+H/SDsYfR6/RTL3j3QwTOCSPBz/DqyhkQvF8itUNq506X/VJKZRVd44F+fs1Is29IWzlKA8bItDRXT1iVBlB66jJ0iQUgo0UfUZ1jzlhzFBve8n/ALMh9qa8ayCWbM8pU0x8="
   },
   "otp": 413372,
+  "__v": 0,
+  "address": [
+    {
+      "address1": "building 23",
+      "address2": "main street",
+      "city": "random",
+      "pincode": "765435",
+      "state": "Manahratstra",
+      "country": "India"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "65bc8c6c4e2cfcedd55de67b"
+  },
+  "fname": "Tejal",
+  "lname": "Supe",
+  "email": "tejal123supe@gmail.com",
+  "googleId": "102404343339413091333",
+  "address": [],
   "__v": 0
 }]

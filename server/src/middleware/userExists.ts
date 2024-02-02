@@ -7,9 +7,9 @@ type UserPresent = {
 };
 
 export const isUserPresent = async (values: UserPresent) => {
-  const { email, googleId, isGoogleSigned } = values;
+  const { email, googleId, isGoogleSigned } = values;   
   if (isGoogleSigned) {
-    const data = await userModel.findOne({ googleId });
+    const data = await userModel.findOne({ googleId:googleId });
     return data;
   } else {
     const data = await userModel

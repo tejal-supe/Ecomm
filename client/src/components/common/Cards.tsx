@@ -1,23 +1,30 @@
 import Rating from "@mui/material/Rating";
 
-const Cards = () => {
+interface CardData{
+  image:string,
+  name:string,
+  price:string,
+  rating:number
+}
+
+const Cards = (props:CardData) => {
   return (
-    <div className="w-[22%] border rounded-lg mb-1">
+    <div className="w-[22%] border rounded-lg mb-1 card">
       <div className="h-52 bg-zinc-300">
         <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgbmG8Ebh27B3t5ChGhk7EWbZ6j2YRPX5IMA&usqp=CAU"
+          src={`/images/${props.image}`}
           alt=""
           className="w-full h-full rounded-b-none rounded-t-lg"
         />
       </div>
       <div className="p-2 tracking-wide">
-        <p className="">T-shirt</p>
-        <p className="font-bold">₹ 200/-</p>
+        <p className="">{props.name}</p>
+        <p className="font-bold">₹ {props.price}/-</p>
         <p>
           {" "}
           <Rating
             name="simple-controlled"
-            value={5}
+            value={props.rating}
             readOnly
            
           />

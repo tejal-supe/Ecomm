@@ -5,6 +5,7 @@ import session from "express-session";
 
 import { MongoConnect } from "./cofig/Connection";
 import Userrouter from "./routes/index";
+import productRoute from "./routes/products"
 const PORT = process.env.PORT;
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(session({
 MongoConnect();
 
 app.use('/api/v1/user', Userrouter)
+app.use('/api/v1/products',productRoute)
 app.use('/', (req: express.Request, res: express.Response) => {
     res.send("Hey ")
 })

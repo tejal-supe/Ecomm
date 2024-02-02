@@ -37,15 +37,17 @@ const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
     const count = useSelector((state: RootState) => state.toast);
-  console.log(count,'count in login');
+  // console.log(count,'count in login');
   
   const loginFormData = async(data: Record<string, string>) => {
      try {
+      console.log('in form dara');
+      
        const userRegister = await login(data);
-       console.log(userRegister.message, "user regsister");
-       dispatch(showToastMessage({
-         value:true,messgae:userRegister.message
-       }))
+       console.log(userRegister, "user regsister");
+      //  dispatch(showToastMessage({
+      //    value:true,messgae:userRegister.message
+      //  }))
        
 
      } catch (error: any) {

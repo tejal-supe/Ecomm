@@ -54,14 +54,10 @@ export const signup = async (req: express.Request, res: express.Response) => {
 };
 
 const conditional = (data: object, res: express.Response) => {
-  if (data) {
+  if (data) {    
     const token = jwtSign(data);
-    res.cookie("access_token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 3600000
-    })
-    res.json({ message: "Welcome" });
+    res.header("access_token", token)
+    res.json({ message: "Welcome" });    
   } else {
     res.json({ messgae: "Please sign up first" });
   }
@@ -71,7 +67,10 @@ export const login = async (req: express.Request, res: express.Response, next: e
   try {
     const { email, isGoogleSigned, googleId, password } = req.body;
     if (isGoogleSigned) {
-      const s = await isUserPresent(googleId);
+      let data = {isGoogleSigned, googleId};
+      
+      const s = await isUserPresent(data);
+      
       if(s){
         conditional(s, res);
       }

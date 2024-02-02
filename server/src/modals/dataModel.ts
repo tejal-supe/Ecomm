@@ -4,21 +4,21 @@ const products = new mongoose.Schema({
         type: String,
         required: true
     },
-    product_image: {
-        type: String,
-        required: true
-    },
-    product_desc: {
-        type: String,   
-        required: true
-    },
-    product_subimages: {
-        type: Array
-    },
-    product_cost: {
-        type: Number,
-        required: true
-    },
+    // product_image: {
+    //     type: String,
+    //     required: true
+    // },
+    // product_desc: {
+    //     type: String,   
+    //     required: true
+    // },
+    // product_subimages: {
+    //     type: Array
+    // },
+    // product_cost: {
+    //     type: Number,
+    //     required: true
+    // },
     product_rating: {
         type: Number
     },
@@ -34,10 +34,10 @@ const products = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    product_feature:{
-        type:String,
-        required:true
-    },
+    // product_feature:{
+    //     type:String,
+    //     required:true
+    // },
     rated_by:{
         type:Array,
         default:[]
