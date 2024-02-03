@@ -8,3 +8,9 @@ export const homeProducts = async() =>{
         url: BaseUrl + config.product.homeProducts,
     })
 }
+export const getAllProducts = async () => {
+    return appRequest({
+      method: RequestMethods.GET,
+      url: BaseUrl + config.product.allProducts,
+    });
+}

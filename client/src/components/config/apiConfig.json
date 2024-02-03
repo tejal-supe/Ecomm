@@ -5,6 +5,7 @@
         "loginUser":"api/v1/user/login"
     },
     "product":{
-        "homeProducts":"api/v1/products/getHomeProducts"
+        "homeProducts":"api/v1/products/getHomeProducts",
+        "allProducts":"api/v1/products/getProducts"
     }
 }
