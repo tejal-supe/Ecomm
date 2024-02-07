@@ -76,3 +76,13 @@ export const searchData = async (
     res.json({ error: error });
   }
 };
+
+export const filterResults = async(req:express.Request,res:express.Response)=>{
+    try {
+      const {obj} = req.body;
+      console.log(obj,'obj')
+    
+    } catch (error) {
+      res.json({error:error})
+  }
+} 
